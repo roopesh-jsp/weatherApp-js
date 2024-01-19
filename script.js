@@ -9,7 +9,8 @@ search.addEventListener("click", updateWeather);
 function updateWeather() {
   const city = document.querySelector("#serchBox").value;
   const APIkey = "8fe6351649ddff3f88f29314ebbf7e3b";
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}&units=metric`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}
+  &appid=${APIkey}&units=metric`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
@@ -26,5 +27,8 @@ function updateWeather() {
         wind.textContent = data.wind.speed + " Km/h";
         weatherimg.setAttribute("src", `images/${data.weather[0].main}.png`);
       }
+    })
+    .catch((error) => {
+      console.log(`error ${error}`);
     });
 }
